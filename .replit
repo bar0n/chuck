@@ -1,0 +1,8 @@
+run = "mvn clean package -Pnative && ./target/chuck"
+
+[nix]
+channel = "stable-24_05"
+packages = ["pkgs.maven", "pkgs.jdk24"]
+
+[deployment]
+run = ["sh", "-c", "mvn clean package -Pnative && ./target/chuck"]
