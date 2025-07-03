@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Chuck Norris Jokes</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            background-image: url('https://e0.pxfuel.com/wallpapers/472/940/desktop-wallpaper-chuck-norris.jpg');
+            background-size: cover;
+            color: white;
+        }
+        .joke-container {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 100px;
+        }
+        .language-selector {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+<div class="language-selector">
+    <form action="/" method="get">
+        <input type="hidden" name="originalJoke" th:value="${originalJoke}" />
+        <select name="lang" onchange="this.form.submit()">
+            <option value="en" th:selected="${lang == 'en'}">English</option>
+            <option value="ru" th:selected="${lang == 'ru'}">Russian</option>
+            <option value="uk" th:selected="${lang == 'uk'}">Ukrainian</option>
+            <option value="bg" th:selected="${lang == 'bg'}">Bulgarian</option>
+        </select>
+    </form>
+</div>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 offset-md-2 text-center joke-container">
+            <h1 th:text="${pageTitle}"></h1>
+            <p class="lead" th:text="${joke}"></p>
+            <a th:href="@{|/?lang=${lang}|}" class="btn btn-primary mt-3" th:text="${buttonText}"></a>
+        </div>
+    </div>
+</div>
+</body>
+</html>
